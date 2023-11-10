@@ -26,7 +26,7 @@ const getUserById=async (req,res,next)=>{
         if(user == undefined){
             res.status(400).json({
             status: "Error",
-            message: `User with id ${userId} is not existed!`
+            message: `User with id ${userId} doesn't exist!`
             })
         }
         res.status(200).json({
@@ -87,7 +87,7 @@ const deleteUser=async (req,res,next)=>{
         if(user == undefined){
             res.status(400).json({
             status: "Error",
-            message: `User with id ${userId} is not existed!`
+            message: `User with id ${userId} doesn't exist!`
             })
         }
         const delete_user=await User.destroy({where:{id:userId}})
@@ -96,10 +96,7 @@ const deleteUser=async (req,res,next)=>{
             message: "Successfully delete user"
         })
     } catch (error) {
-        res.status(400).json({
-        status: "Error",
-        message: `User with id ${userId} is not existed!`
-        })
+        console.log(error.message)
     }
 }
 
